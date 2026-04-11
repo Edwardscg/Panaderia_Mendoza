@@ -26,7 +26,7 @@ public class Cliente {
     @Column(nullable = false, length = 70)
     private String nombre; 
     
-    @Column(nullable = true, length = 20) // Longitud adecuada para un documento
+    @Column(nullable = true, length = 20) 
     private String dni; 
     
     @Column(nullable = false, length = 15)
