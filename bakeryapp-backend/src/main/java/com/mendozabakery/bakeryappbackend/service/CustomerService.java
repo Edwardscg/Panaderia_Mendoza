@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerService implements ICustomerService {
 
-    private final IClienteRepository repo = null;
+    private final IClienteRepository repo;
 
     @Override
     public Customer save(Customer customer) throws Exception {
