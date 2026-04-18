@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,19 +15,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cliente {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idCliente;
+    private Integer idCustomer;
 
     @Column(nullable = false, length = 70)
-    private String nomCliente;
+    private String nameCustomer;
 
     @Column(nullable = true, length = 20)
     private String dni;
 
-    @Column(nullable = false, length = 15)
-    private String telefono;
+    @Column(nullable = true, length = 15)
+    private String phone;
+
+    @Column(nullable = true, length = 100)
+    private String email;
+
+    @Column(nullable = false)
+    private boolean status;
 }

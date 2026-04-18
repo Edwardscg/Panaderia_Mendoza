@@ -2,6 +2,7 @@ package com.mendozabakery.bakeryappbackend.controller;
 
 import java.util.List;
 
+import com.mendozabakery.bakeryappbackend.model.Customer;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,34 +13,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
-import com.mendozabakery.bakeryappbackend.model.Cliente;
-import com.mendozabakery.bakeryappbackend.service.IClienteService;
+import com.mendozabakery.bakeryappbackend.service.ICustomerService;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/customers")
 @RequiredArgsConstructor
-public class ClienteController {
+public class CustomerController {
 
-    private final IClienteService service;
+    private final ICustomerService service;
 
     @GetMapping
-    public List<Cliente> findAll() throws Exception {
+    public List<Customer> findAll() throws Exception {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Cliente findById(@PathVariable("id") Integer id) throws Exception {
+    public Customer findById(@PathVariable("id") Integer id) throws Exception {
         return service.findById(id);
     }
 
     @PostMapping
-    public Cliente save(@RequestBody Cliente cliente) throws Exception {
-        return service.save(cliente);
+    public Customer save(@RequestBody Customer customer) throws Exception {
+        return service.save(customer);
     }
 
     @PutMapping("/{id}")
-    public Cliente update(@RequestBody Cliente cliente, @PathVariable("id") Integer id) throws Exception {
-        return service.update(cliente, id);
+    public Customer update(@RequestBody Customer customer, @PathVariable("id") Integer id) throws Exception {
+        return service.update(customer, id);
     }
 
     @DeleteMapping("/{id}")
