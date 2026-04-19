@@ -30,9 +30,21 @@ public class InventoryMovement {
     private String description;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date movementDate;
 
     @Column(nullable = false)
     private boolean status;
+
+    @Column(nullable = false)
+    @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_MOVEMENT_PRODUCT"))
+    private Product product;
+
+    @Column(nullable = true)
+    @JoinColumn(name = "id_sale", nullable = false, foreignKey = @ForeignKey(name = "FK_MOVEMENT_SALE"))
+    private Sale sale;
+
+    @Column(nullable = true)
+    @JoinColumn(name = "id_purchase", nullable = false, foreignKey = @ForeignKey(name = "FK_MOVEMENT_PURCHASE"))
+    private Purchase purchase;
 }
