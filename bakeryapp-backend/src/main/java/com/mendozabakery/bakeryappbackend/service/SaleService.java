@@ -38,4 +38,5 @@ public class SaleService implements ISaleService{
     @Override
     public void delete(Integer id) throws Exception {
         repo.deleteById(id);
+    }
 }
