@@ -33,7 +33,7 @@ public class EmployeeController {
         return service.update(employee, id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) throws Exception{
         service.delete(id);
     }
