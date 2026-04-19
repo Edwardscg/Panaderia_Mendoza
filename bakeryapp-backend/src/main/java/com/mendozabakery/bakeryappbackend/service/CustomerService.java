@@ -5,7 +5,7 @@ import java.util.List;
 import com.mendozabakery.bakeryappbackend.model.Customer;
 import org.springframework.stereotype.Service;
 
-import com.mendozabakery.bakeryappbackend.repository.IClienteRepository;
+import com.mendozabakery.bakeryappbackend.repository.ICustomerRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerService implements ICustomerService {
 
-    private final IClienteRepository repo;
+    private final ICustomerRepository repo;
 
     @Override
     public Customer save(Customer customer) throws Exception {

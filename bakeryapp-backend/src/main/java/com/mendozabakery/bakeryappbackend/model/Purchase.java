@@ -36,11 +36,11 @@ public class Purchase {
     @Column(nullable = false)
     private boolean status;
 
-    @Column(nullable = false)
+    @ManyToOne
     @JoinColumn(name = "id_supplier", nullable = false, foreignKey = @ForeignKey(name = "FK_PURCHASE_SUPPLIER"))
     private Supplier supplier;
 
-    @Column(nullable = false)
+    @ManyToOne
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_PURCHASE_EMPLOYEE"))
     private Employee employee;
 }

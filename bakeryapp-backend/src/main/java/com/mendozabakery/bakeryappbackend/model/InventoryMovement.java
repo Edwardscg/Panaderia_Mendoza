@@ -36,15 +36,15 @@ public class InventoryMovement {
     @Column(nullable = false)
     private boolean status;
 
-    @Column(nullable = false)
+    @ManyToOne
     @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_MOVEMENT_PRODUCT"))
     private Product product;
 
-    @Column(nullable = true)
-    @JoinColumn(name = "id_sale", nullable = false, foreignKey = @ForeignKey(name = "FK_MOVEMENT_SALE"))
+    @ManyToOne
+    @JoinColumn(name = "id_sale", nullable = true, foreignKey = @ForeignKey(name = "FK_MOVEMENT_SALE"))
     private Sale sale;
 
-    @Column(nullable = true)
-    @JoinColumn(name = "id_purchase", nullable = false, foreignKey = @ForeignKey(name = "FK_MOVEMENT_PURCHASE"))
+    @ManyToOne
+    @JoinColumn(name = "id_purchase", nullable = true, foreignKey = @ForeignKey(name = "FK_MOVEMENT_PURCHASE"))
     private Purchase purchase;
 }

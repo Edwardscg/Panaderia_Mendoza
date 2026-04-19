@@ -41,7 +41,7 @@ public class Product {
     @Column(nullable = false)
     private boolean status;
 
-    @Column(nullable = false)
+    @ManyToOne
     @JoinColumn(name = "id_category", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCT_CATEGORY"))
     private ProductCategory category;
 }
