@@ -1,11 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
-import org.springframework.data.annotation.Id;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,10 +16,10 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idUse_Account;
+    private Integer idUserAccount;
 
     @Column(nullable = false, length = 70)
-    private String nameUser_Account;
+    private String nameUserAccount;
 
     @Column(nullable = false)
     private boolean status;

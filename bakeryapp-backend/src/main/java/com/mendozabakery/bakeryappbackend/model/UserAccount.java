@@ -20,10 +20,10 @@ public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idUse_Account;
+    private Integer idUseAccount;
 
     @Column(nullable = false, length = 70)
-    private String nameUser_Account;
+    private String nameUserAccount;
 
     @Column(nullable = false)
     private boolean status;
