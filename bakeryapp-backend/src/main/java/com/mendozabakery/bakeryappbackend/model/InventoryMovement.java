@@ -18,20 +18,20 @@ public class InventoryMovement {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idInventoryMovement;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private Integer idMovement;
 
     @Column(nullable = false, length = 50)
-    private String type; // ENTRADA / SALIDA
+    private String movementType; // ENTRADA / SALIDA
 
     @Column(nullable = false)
     private int quantity;
 
     @Column(nullable = false, length = 200)
     private String description;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date movementDate;
 
     @Column(nullable = false)
     private boolean status;

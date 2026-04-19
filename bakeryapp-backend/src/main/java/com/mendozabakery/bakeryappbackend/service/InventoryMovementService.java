@@ -21,7 +21,7 @@ public class InventoryMovementService implements IInventoryMovementService{
 
     @Override
     public InventoryMovement update(InventoryMovement movement, Integer id) throws Exception {
-        movement.setIdInventoryMovement(id);
+        movement.setIdMovement(id);
         return repo.save(movement);
     }
 

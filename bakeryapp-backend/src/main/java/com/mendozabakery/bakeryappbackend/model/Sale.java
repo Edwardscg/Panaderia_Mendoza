@@ -13,7 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name = "sale")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Sale {
     @Id
@@ -23,7 +22,7 @@ public class Sale {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date saleDate;
 
     @Column(nullable = false)
     private BigDecimal total;
@@ -39,4 +38,12 @@ public class Sale {
 
     @Column(nullable = false)
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "id_customer", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_CUSTOMER"))
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_EMPLOYEE"))
+    private Employee employee;
 }

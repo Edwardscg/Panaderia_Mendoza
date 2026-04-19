@@ -16,10 +16,22 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idUserAccount;
+    private Integer idEmployee;
 
     @Column(nullable = false, length = 70)
-    private String nameUserAccount;
+    private String firstName;
+
+    @Column(nullable = false, length = 70)
+    private String lastName;
+
+    @Column(nullable = false, length = 8)
+    private String dni;
+
+    @Column(nullable = false, length = 9)
+    private String phone;
+
+    @Column(nullable = false, length = 70)
+    private String position;
 
     @Column(nullable = false)
     private boolean status;
