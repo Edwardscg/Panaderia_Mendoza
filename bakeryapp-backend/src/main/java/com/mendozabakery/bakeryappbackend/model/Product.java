@@ -44,4 +44,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "id_category", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCT_CATEGORY"))
     private ProductCategory category;
+
+    @OneToOne(mappedBy = "product")
+    private Inventory inventory;
 }
