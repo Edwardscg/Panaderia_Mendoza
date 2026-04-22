@@ -1,14 +1,7 @@
 package com.mendozabakery.bakeryappbackend.model;
 
 import jakarta.persistence.*;
-<<<<<<< HEAD
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-=======
 import lombok.*;
->>>>>>> 11700e352c685a1e20412792ab1fe30558dfa39e
 
 @Data
 @NoArgsConstructor

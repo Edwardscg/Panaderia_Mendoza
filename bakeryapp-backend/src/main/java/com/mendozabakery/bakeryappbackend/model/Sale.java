@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +21,7 @@ public class Sale {
     private Integer idSale;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date saleDate;
+    private LocalDateTime saleDate;
 
     @Column(nullable = false)
     private BigDecimal total;

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -30,8 +30,7 @@ public class InventoryMovement {
     private String description;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date movementDate;
+    private LocalDateTime movementDate;
 
     @Column(nullable = false)
     private boolean status;
