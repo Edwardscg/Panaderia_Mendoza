@@ -23,4 +23,12 @@ public class RecipeDetail {
 
     @Column(nullable = false)
     private String unit;
+
+    @ManyToOne
+    @JoinColumn(name = "id_recipe", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPEDETAIL_RECIPE"))
+    private Recipe recipe;
+
+    @ManyToOne
+    @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPEDETAIL_RECIPE"))
+    private Product product;
 }
