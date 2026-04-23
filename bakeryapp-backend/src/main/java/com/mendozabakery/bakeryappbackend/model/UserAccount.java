@@ -30,7 +30,7 @@ public class UserAccount {
     @Column(nullable = false)
     private boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_USERACCOUNT_EMPLOYEE"))
+    @OneToOne
+    @JoinColumn(name = "id_employee", nullable = false)
     private Employee employee;
 }

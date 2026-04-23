@@ -47,4 +47,8 @@ public class InventoryMovement {
     @ManyToOne
     @JoinColumn(name = "id_purchase", nullable = true, foreignKey = @ForeignKey(name = "FK_MOVEMENT_PURCHASE"))
     private Purchase purchase;
+
+    @ManyToOne
+    @JoinColumn(name = "id_recipe", nullable = true, foreignKey = @ForeignKey(name = "FK_MOVEMENT_RECIPE"))
+    private Recipe recipe;
 }

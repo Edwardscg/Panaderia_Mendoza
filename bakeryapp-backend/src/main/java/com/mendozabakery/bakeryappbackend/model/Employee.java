@@ -35,4 +35,8 @@ public class Employee {
 
     @Column(nullable = false)
     private boolean status;
+
+    @OneToOne(mappedBy = "employee")
+    private UserAccount userAccount;
+
 }
