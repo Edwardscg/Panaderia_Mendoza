@@ -1,8 +1,5 @@
 package com.mendozabakery.bakeryappbackend.service;
 
-public class RecipeService {
-    package com.mendozabakery.bakeryappbackend.service;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +39,4 @@ public class RecipeService implements IRecipeService {
     public void delete(Integer id) throws Exception {
         repo.deleteById(id);
     }
-}
 }
