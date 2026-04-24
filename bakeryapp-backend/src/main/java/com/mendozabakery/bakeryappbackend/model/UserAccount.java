@@ -27,14 +27,9 @@ public class UserAccount {
     @Column(nullable = false)
     private boolean status;
 
-<<<<<<< HEAD
     @ManyToOne
 
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_USERACCOUNT_EMPLOYEE"))
-=======
-    @OneToOne
-    @JoinColumn(name = "id_employee", nullable = false)
->>>>>>> 809f9be10674cfe1c9de34055a96d741d6644f4a
     private Employee employee;
 }
 
