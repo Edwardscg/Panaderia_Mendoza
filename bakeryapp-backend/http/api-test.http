@@ -1,33 +1,13 @@
 
-// POST : CREAR
-#POST http://localhost:8080/customers
-#Content-Type: application/json
-#
-#{
-#  "nameCustomer": "Edward",
-#  "dni": "12345678",
-#  "phone": "987654321",
-#  "email": "edward@gmail.com",
-#  "status": true
-#}
+POST : CREAR
+POST http://localhost:8080/customers
+Content-Type: application/json
 
-// GET : OBTENER TODO
-#GET http://localhost:8080/customers
+{
+  "nameCustomer": "Edward",
+  "dni": "12345678",
+  "phone": "987654321",
+  "email": "edward@gmail.com",
+  "status": true
+}
 
-// GET : OBTENER POR ID
-#GET http://localhost:8080/customers/1
-
-// PUT : ACTUALIZAR CLIENTE
-#PUT http://localhost:8080/customers/1
-#Content-Type: application/json
-#
-#{
-#  "nameCustomer": "Edward Actualizado",
-#  "dni": "87654321",
-#  "phone": "999999999",
-#  "email": "edwardsteven@gmail.com",
-#  "status": false
-#}
-
-// DELETE : ELIMINAR
-#DELETE http://localhost:8080/customers/1
