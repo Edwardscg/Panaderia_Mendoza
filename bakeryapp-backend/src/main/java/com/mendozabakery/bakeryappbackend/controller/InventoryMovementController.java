@@ -30,14 +30,4 @@ public class InventoryMovementController {
     public InventoryMovement save(@RequestBody InventoryMovement movement) throws Exception {
         return service.save(movement);
     }
-
-    @PutMapping("/{id}")
-    public InventoryMovement update(@RequestBody InventoryMovement movement, @PathVariable("id") Integer id) throws Exception {
-        return service.update(movement, id);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception {
-        service.delete(id);
-    }
 }

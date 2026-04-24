@@ -20,12 +20,6 @@ public class InventoryMovementService implements IInventoryMovementService{
     }
 
     @Override
-    public InventoryMovement update(InventoryMovement movement, Integer id) throws Exception {
-        movement.setIdMovement(id);
-        return repo.save(movement);
-    }
-
-    @Override
     public List<InventoryMovement> findAll() throws Exception {
         return repo.findAll();
     }
@@ -33,10 +27,5 @@ public class InventoryMovementService implements IInventoryMovementService{
     @Override
     public InventoryMovement findById(Integer id) throws Exception {
         return repo.findById(id).orElse(new InventoryMovement());
-    }
-
-    @Override
-    public void delete(Integer id) throws Exception {
-        repo.deleteById(id);
     }
 }
