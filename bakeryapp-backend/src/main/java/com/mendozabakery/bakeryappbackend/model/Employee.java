@@ -34,4 +34,12 @@ public class Employee {
 
     @Column(nullable = false)
     private boolean status;
+<<<<<<< HEAD
 }
+=======
+
+    @OneToOne(mappedBy = "employee")
+    private UserAccount userAccount;
+
+}
+>>>>>>> 809f9be10674cfe1c9de34055a96d741d6644f4a
