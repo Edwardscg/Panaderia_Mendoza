@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +28,7 @@ public class ProductCategory {
 
     @Column(nullable = false)
     private boolean status;
+
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products;
 }

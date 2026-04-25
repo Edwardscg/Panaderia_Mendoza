@@ -1,10 +1,13 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -30,6 +33,9 @@ public class Employee {
     @Column(nullable = false, length = 9)
     private String phone;
 
+    @Column(nullable = false, length = 50)
+    private String email;
+
     @Column(nullable = false, length = 70)
     private String position;
 
@@ -37,6 +43,12 @@ public class Employee {
     private boolean status;
 
     @OneToOne(mappedBy = "employee")
+    @JsonIgnore
     private UserAccount userAccount;
 
+    @OneToMany(mappedBy = "employee")
+    private Set<Purchase> purchases;
+
+    @OneToMany(mappedBy = "employee")
+    private Set<Sale> sales;
 }

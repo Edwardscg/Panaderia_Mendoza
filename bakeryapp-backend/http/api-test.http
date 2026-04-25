@@ -1,5 +1,5 @@
 
-// POST : CREAR
+# //POST : CREAR
 #POST http://localhost:8080/customers
 #Content-Type: application/json
 #
@@ -32,56 +32,15 @@
 // DELETE : ELIMINAR
 #DELETE http://localhost:8080/customers/1
 
-
-#POST http://localhost:8080/product-categories
-#Content-Type: application/json
-#
-#{
-#  "name": "Insumo",
-#  "description": "Productos para hornear o preparar.",
-#  "status": true
-#}
-
-
-#POST http://localhost:8080/products
-#Content-Type: application/json
-#
-#{
-#  "name": "Torta",
-#  "description": "Torta simple",
-#  "salePrice": 45.00,
-#  "productionCost": 27.00,
-#  "type": "Dulce",
-#  "unitMeasure": "Kg",
-#  "status": true,
-#  "category": {
-#    "idCategory": 1
-#  }
-#}
-
-
-#POST http://localhost:8080/suppliers
-#Content-Type: application/json
-#
-#{
-#  "businessName": "Insumos San José SAC",
-#  "ruc": "20123456789",
-#  "phone": "987654321",
-#  "email": "contacto@panificadora.com",
-#  "address": "Av. Los Pinos 123 - Trujillo",
-#  "status": true
-#}
-
-
 #POST http://localhost:8080/employees
 #Content-Type: application/json
 #
 #{
-#  "firstName": "Pachacutec",
-#  "lastName": "Mendoza",
+#  "firstName": "Edward",
+#  "lastName": "Steven",
 #  "dni": "12345678",
 #  "phone": "987654321",
-#  "position": "Administrador",
+#  "email": "edward@gmail.com",
+#  "position": "Cajero",
 #  "status": true
 #}
-

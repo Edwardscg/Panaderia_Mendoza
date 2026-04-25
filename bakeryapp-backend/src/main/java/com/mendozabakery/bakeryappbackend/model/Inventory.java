@@ -27,7 +27,6 @@ public class Inventory {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
 
-    //Relacion con Product 1 a 1
     @OneToOne
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;
