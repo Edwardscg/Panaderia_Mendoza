@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,4 +35,7 @@ public class Recipe {
     @ManyToOne
     @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPE_PRODUCT"))
     private Product product;
+
+    @OneToMany(mappedBy = "recipe")
+    private Set<RecipeDetail> recipeDetails;
 }
