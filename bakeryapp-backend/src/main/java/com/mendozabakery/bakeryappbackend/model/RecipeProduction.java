@@ -13,21 +13,25 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Inventory {
+public class RecipeProduction {
 
     @Id
-    @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer  idInventory;
+    @EqualsAndHashCode.Include
+    private Integer idProduction;
 
     @Column(nullable = false)
-    private int currentStock;
+    private int quantityProduced;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    private Date productionDate;
 
-    @OneToOne
-    @JoinColumn(name = "id_product", nullable = false)
-    private Product product;
+    @ManyToOne
+    @JoinColumn(name = "id_recipe", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCTION_RECIPE"))
+    private Recipe recipe;
+
+    @ManyToOne
+    @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCTION_EMPLOYEE"))
+    private Employee employee;
 }

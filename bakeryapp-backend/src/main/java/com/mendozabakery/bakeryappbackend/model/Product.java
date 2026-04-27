@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -46,5 +48,18 @@ public class Product {
     private ProductCategory category;
 
     @OneToOne(mappedBy = "product")
+    @JsonIgnore
     private Inventory inventory;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Recipe> recipes;
+
+    @OneToMany(mappedBy = "product")
+    private Set<PurchaseDetail> purchaseDetails;
+
+    @OneToMany(mappedBy = "product")
+    private Set<RecipeDetail> recipeDetails;
+
+    @OneToMany(mappedBy = "product")
+    private Set<SaleDetail> saleDetails;
 }

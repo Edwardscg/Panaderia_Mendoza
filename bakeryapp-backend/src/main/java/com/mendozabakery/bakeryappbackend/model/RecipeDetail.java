@@ -6,28 +6,29 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Inventory {
+public class RecipeDetail {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer  idInventory;
+    private Integer idRecipeDetail;
 
     @Column(nullable = false)
-    private int currentStock;
+    private double quantity;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    private String unit;
 
-    @OneToOne
-    @JoinColumn(name = "id_product", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_recipe", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPEDETAIL_RECIPE"))
+    private Recipe recipe;
+
+    @ManyToOne
+    @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPEDETAIL_PRODUCT"))
     private Product product;
 }

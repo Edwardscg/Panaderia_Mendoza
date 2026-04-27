@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -36,9 +37,6 @@ public class Sale {
     @Column(nullable = false, length = 50)
     private String paymentMethod;
 
-    @Column(nullable = false)
-    private String status;
-
     @ManyToOne
     @JoinColumn(name = "id_customer", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_CUSTOMER"))
     private Customer customer;
@@ -46,4 +44,7 @@ public class Sale {
     @ManyToOne
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_EMPLOYEE"))
     private Employee employee;
+
+    @OneToMany(mappedBy = "sale")
+    private Set<SaleDetail> saleDetails;
 }
