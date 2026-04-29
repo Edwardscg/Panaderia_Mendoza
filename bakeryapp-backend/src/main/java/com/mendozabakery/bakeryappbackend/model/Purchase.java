@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -24,7 +23,6 @@ public class Purchase {
     private Integer idPurchase;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime purchaseDate;
 
     @Column(nullable = false, precision = 10, scale = 2)

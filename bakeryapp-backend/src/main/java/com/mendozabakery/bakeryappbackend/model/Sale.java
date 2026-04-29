@@ -23,7 +23,6 @@ public class Sale {
     private Integer idSale;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime saleDate;
 
     @Column(nullable = false)

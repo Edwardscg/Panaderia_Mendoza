@@ -24,7 +24,6 @@ public class RecipeProduction {
     private int quantityProduced;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime productionDate;
 
     @ManyToOne
