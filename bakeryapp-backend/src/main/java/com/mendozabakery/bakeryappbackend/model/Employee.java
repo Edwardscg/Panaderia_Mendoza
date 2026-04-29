@@ -44,13 +44,12 @@ public class Employee {
     private boolean status;
 
     @OneToOne(mappedBy = "employee")
-    @JsonIgnore
     private UserAccount userAccount;
 
     @OneToMany(mappedBy = "employee")
     private Set<Purchase> purchases;
 
     @OneToMany(mappedBy = "employee")
-    @JsonManagedReference(value = "employee-sale")
+    @JsonIgnore
     private Set<Sale> sales;
 }

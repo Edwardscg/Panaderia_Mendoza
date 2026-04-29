@@ -41,12 +41,10 @@ public class Sale {
     private String paymentMethod;
 
     @ManyToOne
-    @JsonBackReference(value = "customer-sale")
     @JoinColumn(name = "id_customer", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_CUSTOMER"))
     private Customer customer;
 
     @ManyToOne
-    @JsonBackReference(value = "employee-sale")
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_EMPLOYEE"))
     private Employee employee;
 
