@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Inventory {
     private Date lastUpdate;
 
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;
 }

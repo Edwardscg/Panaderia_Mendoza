@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,5 +37,6 @@ public class Customer {
     private boolean status;
 
     @OneToMany(mappedBy = "customer")
+    @JsonManagedReference(value = "customer-sale")
     private Set<Sale> sales;
 }

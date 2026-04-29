@@ -1,5 +1,7 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -23,7 +26,7 @@ public class Sale {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date saleDate;
+    private LocalDateTime saleDate;
 
     @Column(nullable = false)
     private BigDecimal total;
@@ -38,10 +41,12 @@ public class Sale {
     private String paymentMethod;
 
     @ManyToOne
+    @JsonBackReference(value = "customer-sale")
     @JoinColumn(name = "id_customer", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_CUSTOMER"))
     private Customer customer;
 
     @ManyToOne
+    @JsonBackReference(value = "employee-sale")
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_EMPLOYEE"))
     private Employee employee;
 
