@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,10 +29,12 @@ public class RecipeProduction {
     private Date productionDate;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_recipe", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCTION_RECIPE"))
     private Recipe recipe;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCTION_EMPLOYEE"))
     private Employee employee;
 }
