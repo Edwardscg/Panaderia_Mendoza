@@ -1,6 +1,5 @@
 package com.mendozabakery.bakeryappbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +31,6 @@ public class UserAccount {
     private boolean status;
 
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "id_employee", nullable = false)
     private Employee employee;
 }

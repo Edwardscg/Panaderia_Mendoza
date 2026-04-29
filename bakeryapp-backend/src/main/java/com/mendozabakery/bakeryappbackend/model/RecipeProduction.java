@@ -1,13 +1,12 @@
 package com.mendozabakery.bakeryappbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -26,15 +25,13 @@ public class RecipeProduction {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date productionDate;
+    private LocalDateTime productionDate;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_recipe", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCTION_RECIPE"))
     private Recipe recipe;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCTION_EMPLOYEE"))
     private Employee employee;
 }

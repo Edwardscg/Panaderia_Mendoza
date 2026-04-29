@@ -1,6 +1,5 @@
 package com.mendozabakery.bakeryappbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -49,5 +47,6 @@ public class Sale {
     private Employee employee;
 
     @OneToMany(mappedBy = "sale")
+    @JsonIgnore
     private Set<SaleDetail> saleDetails;
 }

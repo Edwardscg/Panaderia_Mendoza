@@ -44,7 +44,6 @@ public class Product {
     private boolean status;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_category", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCT_CATEGORY"))
     private ProductCategory category;
 
@@ -53,14 +52,18 @@ public class Product {
     private Inventory inventory;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private Set<Recipe> recipes;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private Set<PurchaseDetail> purchaseDetails;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private Set<RecipeDetail> recipeDetails;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private Set<SaleDetail> saleDetails;
 }

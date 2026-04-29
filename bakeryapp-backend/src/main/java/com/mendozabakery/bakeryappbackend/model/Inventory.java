@@ -1,13 +1,10 @@
 package com.mendozabakery.bakeryappbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -24,12 +21,7 @@ public class Inventory {
     @Column(nullable = false)
     private int currentStock;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
-
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;
 }
