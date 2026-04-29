@@ -48,6 +48,7 @@ public class Product {
     private ProductCategory category;
 
     @OneToOne(mappedBy = "product")
+    @JsonIgnore
     private Inventory inventory;
 
     @OneToMany(mappedBy = "product")

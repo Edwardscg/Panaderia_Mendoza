@@ -26,7 +26,6 @@ public class Inventory {
     private int currentStock;
 
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;
 }
