@@ -51,6 +51,6 @@ public class Employee {
     private Set<Purchase> purchases;
 
     @OneToMany(mappedBy = "employee")
-    @JsonManagedReference
+    @JsonManagedReference(value = "employee-sale")
     private Set<Sale> sales;
 }

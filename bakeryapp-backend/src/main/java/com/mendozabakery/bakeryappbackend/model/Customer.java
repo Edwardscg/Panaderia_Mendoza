@@ -37,6 +37,6 @@ public class Customer {
     private boolean status;
 
     @OneToMany(mappedBy = "customer")
-    @JsonManagedReference
+    @JsonManagedReference(value = "customer-sale")
     private Set<Sale> sales;
 }
