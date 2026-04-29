@@ -32,7 +32,6 @@ public class UserAccount {
     private boolean status;
 
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "id_employee", nullable = false)
     private Employee employee;
 }
