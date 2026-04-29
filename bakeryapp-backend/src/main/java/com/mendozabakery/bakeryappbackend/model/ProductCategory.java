@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,5 +31,6 @@ public class ProductCategory {
     private boolean status;
 
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private Set<Product> products;
 }

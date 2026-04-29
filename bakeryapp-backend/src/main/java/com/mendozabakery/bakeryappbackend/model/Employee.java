@@ -44,9 +44,11 @@ public class Employee {
     private boolean status;
 
     @OneToOne(mappedBy = "employee")
+    @JsonIgnore
     private UserAccount userAccount;
 
     @OneToMany(mappedBy = "employee")
+    @JsonIgnore
     private Set<Purchase> purchases;
 
     @OneToMany(mappedBy = "employee")

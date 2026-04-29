@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class Purchase {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date purchaseDate;
+    private LocalDateTime purchaseDate;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal total;
@@ -36,15 +37,14 @@ public class Purchase {
     private String receiptNumber;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_supplier", nullable = false, foreignKey = @ForeignKey(name = "FK_PURCHASE_SUPPLIER"))
     private Supplier supplier;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_PURCHASE_EMPLOYEE"))
     private Employee employee;
 
     @OneToMany(mappedBy = "purchase")
+    @JsonIgnore
     private Set<PurchaseDetail> purchaseDetails;
 }

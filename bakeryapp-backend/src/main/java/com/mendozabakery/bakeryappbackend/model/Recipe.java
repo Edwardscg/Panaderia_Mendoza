@@ -34,10 +34,10 @@ public class Recipe {
     private boolean status;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPE_PRODUCT"))
     private Product product;
 
     @OneToMany(mappedBy = "recipe")
+    @JsonIgnore
     private Set<RecipeDetail> recipeDetails;
 }

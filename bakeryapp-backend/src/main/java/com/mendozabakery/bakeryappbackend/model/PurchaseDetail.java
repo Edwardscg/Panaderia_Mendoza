@@ -31,12 +31,10 @@ public class PurchaseDetail {
     private BigDecimal subtotal;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_purchase", nullable = false, foreignKey = @ForeignKey(name = "FK_PURCHASEDETAIL_PURCHASE"))
     private Purchase purchase;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_PURCHASEDETAIL_PRODUCT"))
     private Product product;
 }

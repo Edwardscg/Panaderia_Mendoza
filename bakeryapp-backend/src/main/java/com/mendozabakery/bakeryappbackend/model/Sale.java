@@ -49,5 +49,6 @@ public class Sale {
     private Employee employee;
 
     @OneToMany(mappedBy = "sale")
+    @JsonIgnore
     private Set<SaleDetail> saleDetails;
 }
