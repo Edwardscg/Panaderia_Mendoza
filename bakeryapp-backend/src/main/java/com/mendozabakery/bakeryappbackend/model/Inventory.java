@@ -25,10 +25,6 @@ public class Inventory {
     @Column(nullable = false)
     private int currentStock;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime lastUpdate;
-
     @OneToOne
     @JsonIgnore
     @JoinColumn(name = "id_product", nullable = false)
