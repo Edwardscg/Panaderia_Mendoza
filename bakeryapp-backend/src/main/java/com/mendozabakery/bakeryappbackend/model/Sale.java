@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,12 +40,12 @@ public class Sale {
     private String paymentMethod;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "id_customer", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_CUSTOMER"))
     private Customer customer;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_EMPLOYEE"))
     private Employee employee;
 
