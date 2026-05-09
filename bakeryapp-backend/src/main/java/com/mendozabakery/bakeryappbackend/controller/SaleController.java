@@ -10,6 +10,7 @@ import com.mendozabakery.bakeryappbackend.service.ISaleService;
 @RestController
 @RequestMapping("/sales")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class SaleController {
     private final ISaleService service;
 

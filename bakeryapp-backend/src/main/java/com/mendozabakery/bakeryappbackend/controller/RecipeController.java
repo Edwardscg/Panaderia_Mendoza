@@ -12,6 +12,7 @@ import com.mendozabakery.bakeryappbackend.service.IRecipeService;
 @RestController
 @RequestMapping("/recipes")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class RecipeController {
 
     private final IRecipeService service;
