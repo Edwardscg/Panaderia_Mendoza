@@ -12,6 +12,7 @@ import com.mendozabakery.bakeryappbackend.service.ISupplierService;
 @RestController
 @RequestMapping("/suppliers")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class SupplierController {
 
     private final ISupplierService service;

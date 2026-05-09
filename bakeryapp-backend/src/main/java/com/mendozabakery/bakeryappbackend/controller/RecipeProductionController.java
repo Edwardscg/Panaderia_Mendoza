@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/productions")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class RecipeProductionController {
 
     private final IRecipeProductionService service;
