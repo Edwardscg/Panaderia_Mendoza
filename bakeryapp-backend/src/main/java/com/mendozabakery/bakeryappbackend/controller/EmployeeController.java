@@ -1,41 +1,61 @@
 package com.mendozabakery.bakeryappbackend.controller;
 
-import com.mendozabakery.bakeryappbackend.model.Employee;
-import com.mendozabakery.bakeryappbackend.service.IEmployeeService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
+import java.net.URI;
 import java.util.List;
+
+import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
+import com.mendozabakery.bakeryappbackend.model.Employee;
+import com.mendozabakery.bakeryappbackend.service.EmployeeService;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
+
+import com.mendozabakery.bakeryappbackend.service.IEmployeeService;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/employees")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class EmployeeController {
     private final IEmployeeService service;
+    private final ModelMapper modelMapper;
 
     @GetMapping
-    public List<Employee> findAll() throws Exception{
-        return service.findAll();
+    public ResponseEntity<List<EmployeeDTO>> findAll() throws Exception {
+        List<EmployeeDTO> list = service.findAll().stream()
+                .map(e -> modelMapper.map(e, EmployeeDTO.class))
+                .toList();
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public Employee findById(@PathVariable("id") Integer id) throws Exception{
-        return service.findById(id);
+    public ResponseEntity<EmployeeDTO> findById(@PathVariable Integer id) throws Exception {
+        Employee obj = service.findById(id);
+        EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping
-    public Employee save(@RequestBody Employee employee) throws Exception{
-        return service.save(employee);
+    public ResponseEntity<Void> save(@RequestBody EmployeeDTO dto) throws Exception {
+        Employee obj = service.save(modelMapper.map(dto, Employee.class));
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(obj.getIdEmployee())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public Employee update(@RequestBody Employee employee, @PathVariable("id") Integer id) throws Exception{
-        return service.update(employee, id);
+    public ResponseEntity<EmployeeDTO> update(@RequestBody EmployeeDTO dto, @PathVariable Integer id) throws Exception {
+        Employee obj = service.update(modelMapper.map(dto, Employee.class), id);
+        return ResponseEntity.ok(modelMapper.map(obj, EmployeeDTO.class));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception{
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

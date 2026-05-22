@@ -5,7 +5,7 @@ import java.util.List;
 import com.mendozabakery.bakeryappbackend.model.Supplier;
 import org.springframework.stereotype.Service;
 
-import com.mendozabakery.bakeryappbackend.repository.ISupplierRepository;
+import com.mendozabakery.bakeryappbackend.repository.ISupplierRepositoryI;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SupplierService implements ISupplierService {
 
-    private final ISupplierRepository repo;
+    private final ISupplierRepositoryI repo;
 
     @Override
     public Supplier save(Supplier supplier) throws Exception {

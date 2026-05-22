@@ -1,7 +1,7 @@
 package com.mendozabakery.bakeryappbackend.service;
 
 import com.mendozabakery.bakeryappbackend.model.RecipeProduction;
-import com.mendozabakery.bakeryappbackend.repository.IRecipeProductionRepository;
+import com.mendozabakery.bakeryappbackend.repository.IRecipeProductionRepositoryI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RecipeProductionService implements IRecipeProductionService {
 
-    private final IRecipeProductionRepository repo;
+    private final IRecipeProductionRepositoryI repo;
 
     @Override
     public RecipeProduction save(RecipeProduction production) throws Exception {
