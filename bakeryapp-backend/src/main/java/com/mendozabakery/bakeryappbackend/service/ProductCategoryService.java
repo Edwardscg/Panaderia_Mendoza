@@ -5,7 +5,7 @@ import java.util.List;
 import com.mendozabakery.bakeryappbackend.model.ProductCategory;
 import org.springframework.stereotype.Service;
 
-import com.mendozabakery.bakeryappbackend.repository.IProductCategoryRepository;
+import com.mendozabakery.bakeryappbackend.repository.IProductCategoryRepositoryI;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductCategoryService implements IProductCategoryService {
 
-    private final IProductCategoryRepository repo;
+    private final IProductCategoryRepositoryI repo;
 
     @Override
     public ProductCategory save(ProductCategory productCategory) throws Exception {

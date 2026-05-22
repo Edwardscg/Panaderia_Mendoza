@@ -1,7 +1,7 @@
 package com.mendozabakery.bakeryappbackend.service;
 
 import com.mendozabakery.bakeryappbackend.model.Purchase;
-import com.mendozabakery.bakeryappbackend.repository.IPurchaseRepository;
+import com.mendozabakery.bakeryappbackend.repository.IPurchaseRepositoryI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PurchaseService implements IPurchaseService{
-    private final IPurchaseRepository repo;
+    private final IPurchaseRepositoryI repo;
 
     @Override
     public Purchase save(Purchase purchase) throws Exception {

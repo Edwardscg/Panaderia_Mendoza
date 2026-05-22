@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.mendozabakery.bakeryappbackend.model.Recipe;
-import com.mendozabakery.bakeryappbackend.repository.IRecipeRepository;
+import com.mendozabakery.bakeryappbackend.repository.IRecipeRepositoryI;
 
 @Service
 @RequiredArgsConstructor
 public class RecipeService implements IRecipeService {
 
-    private final IRecipeRepository repo;
+    private final IRecipeRepositoryI repo;
 
     @Override
     public Recipe save(Recipe recipe) throws Exception {

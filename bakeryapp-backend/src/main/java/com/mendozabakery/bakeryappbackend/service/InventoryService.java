@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mendozabakery.bakeryappbackend.model.Inventory;
-import com.mendozabakery.bakeryappbackend.repository.IInventoryRepository;
+import com.mendozabakery.bakeryappbackend.repository.IInventoryRepositoryI;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InventoryService implements IInventoryService {
 
-    private final IInventoryRepository repo;
+    private final IInventoryRepositoryI repo;
 
     @Override
     public Inventory save(Inventory inventory) throws Exception {
