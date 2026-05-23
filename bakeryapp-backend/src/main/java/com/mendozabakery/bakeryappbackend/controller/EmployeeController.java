@@ -7,6 +7,8 @@ import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
 import com.mendozabakery.bakeryappbackend.model.Employee;
 import com.mendozabakery.bakeryappbackend.service.EmployeeService;
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
@@ -57,5 +59,21 @@ public class EmployeeController {
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/hateoas/{id}")
+    public EntityModel<EmployeeDTO> findByIdHateoas(@PathVariable Integer id) throws Exception {
+        Employee obj = service.findById(id);
+        EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
+
+        EntityModel<EmployeeDTO> entityModel = EntityModel.of(dto);
+
+        WebMvcLinkBuilder link1 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(EmployeeController.class).findById(id));
+        WebMvcLinkBuilder link2 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(EmployeeController.class).findAll());
+        WebMvcLinkBuilder link3 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CustomerController.class).findAll());
+
+        entityModel.add(link1.withRel("employee-self-info"));
+        entityModel.add(link2.withRel("employee-all-info"));
+        entityModel.add(link3.withRel("custoemr-all-info"));
+        return entityModel;
     }
 }
