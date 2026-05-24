@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mendozabakery.bakeryappbackend.model.Sale;
-import com.mendozabakery.bakeryappbackend.repository.ISaleRepository;
+import com.mendozabakery.bakeryappbackend.repository.ISaleRepositoryI;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class SaleService implements ISaleService{
-    private final ISaleRepository repo;
+    private final ISaleRepositoryI repo;
 
     @Override
     public Sale save(Sale sale) throws Exception {

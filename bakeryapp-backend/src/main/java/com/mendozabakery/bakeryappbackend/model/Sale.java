@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,10 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+<<<<<<< HEAD
+=======
+import java.util.Set;
+>>>>>>> 548ce5e59d8f02655bdaa7f4d5a5315cf75b3dd1
 
 @Data
 @NoArgsConstructor
@@ -35,9 +40,6 @@ public class Sale {
     @Column(nullable = false, length = 50)
     private String paymentMethod;
 
-    @Column(nullable = false)
-    private String status;
-
     @ManyToOne
     @JoinColumn(name = "id_customer", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_CUSTOMER"))
     private Customer customer;
@@ -45,4 +47,8 @@ public class Sale {
     @ManyToOne
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_EMPLOYEE"))
     private Employee employee;
+
+    @OneToMany(mappedBy = "sale")
+    @JsonIgnore
+    private Set<SaleDetail> saleDetails;
 }

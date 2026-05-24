@@ -1,10 +1,13 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -35,4 +38,8 @@ public class Supplier {
 
     @Column(nullable = false)
     private boolean status;
+
+    @OneToMany(mappedBy = "supplier")
+    @JsonIgnore
+    private Set<Purchase> purchases;
 }

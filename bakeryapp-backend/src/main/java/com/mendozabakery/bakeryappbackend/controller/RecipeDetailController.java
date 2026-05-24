@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/recipe-details")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class RecipeDetailController {
 
     private final IRecipeDetailService service;

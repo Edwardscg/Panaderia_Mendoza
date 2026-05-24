@@ -1,5 +1,5 @@
 
-// POST : CREAR
+# //POST : CREAR
 #POST http://localhost:8080/customers
 #Content-Type: application/json
 #
@@ -7,12 +7,12 @@
 #  "nameCustomer": "Edward",
 #  "dni": "12345678",
 #  "phone": "987654321",
-#  "email": "edward@gmail.com",
+#  "email": "edwardgmail.com",
 #  "status": true
 #}
 
 // GET : OBTENER TODO
-#GET http://localhost:8080/customers
+#GET http://localhost:8080/employees
 
 // GET : OBTENER POR ID
 #GET http://localhost:8080/customers/1
@@ -25,9 +25,22 @@
 #  "nameCustomer": "Edward Actualizado",
 #  "dni": "87654321",
 #  "phone": "999999999",
-#  "email": "edwardsteven@gmail.com",
+#  "email": "edwardstevengmail.com",
 #  "status": false
 #}
 
 // DELETE : ELIMINAR
 #DELETE http://localhost:8080/customers/1
+
+#POST http://localhost:8080/employees
+#Content-Type: application/json
+#
+#{
+#  "firstName": "Edward",
+#  "lastName": "Steven",
+#  "dni": "12345678",
+#  "phone": "987654321",
+#  "email": "edward@gmail.com",
+#  "position": "Cajero",
+#  "status": true
+#}

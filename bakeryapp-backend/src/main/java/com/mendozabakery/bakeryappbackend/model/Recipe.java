@@ -1,10 +1,13 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -33,4 +36,8 @@ public class Recipe {
     @ManyToOne
     @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPE_PRODUCT"))
     private Product product;
+
+    @OneToMany(mappedBy = "recipe")
+    @JsonIgnore
+    private Set<RecipeDetail> recipeDetails;
 }
