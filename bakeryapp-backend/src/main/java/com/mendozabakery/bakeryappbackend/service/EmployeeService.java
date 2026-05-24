@@ -13,28 +13,28 @@ public class EmployeeService implements IEmployeeService{
     private final IEmployeeRepositoryI repo;
 
     @Override
-    public Employee save(Employee employee) throws Exception{
-        return repo.save(employee);
+    protected IGenericRepository<Employee , Integer> getRepo(){
+        return repo;
     }
 
-    @Override
-    public Employee update(Employee employee, Integer id) throws Exception{
-        employee.setIdEmployee(id);
-        return repo.save(employee);
-    }
-
-    @Override
-    public List<Employee> findAll() throws Exception{
-        return repo.findAll();
-    }
-
-    @Override
-    public Employee findById(Integer id) throws Exception{
-        return repo.findById(id).orElse(new Employee());
-    }
-
-    @Override
-    public void delete(Integer id) throws Exception{
-        repo.deleteById(id);
-    }
+//    @Override
+//    public Employee update(Employee employee, Integer id) throws Exception{
+//        employee.setIdEmployee(id);
+//        return repo.save(employee);
+//    }
+//
+//    @Override
+//    public List<Employee> findAll() throws Exception{
+//        return repo.findAll();
+//    }
+//
+//    @Override
+//    public Employee findById(Integer id) throws Exception{
+//        return repo.findById(id).orElse(new Employee());
+//    }
+//
+//    @Override
+//    public void delete(Integer id) throws Exception{
+//        repo.deleteById(id);
+//    }
 }

@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SaleDetail {
-
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
