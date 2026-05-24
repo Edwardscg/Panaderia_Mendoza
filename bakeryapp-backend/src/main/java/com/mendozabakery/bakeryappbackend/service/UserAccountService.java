@@ -1,28 +1,16 @@
 package com.mendozabakery.bakeryappbackend.service;
 
-<<<<<<< HEAD
-=======
 import com.mendozabakery.bakeryappbackend.model.UserAccount;
 import com.mendozabakery.bakeryappbackend.repository.IUserAccountRepositoryI;
->>>>>>> 548ce5e59d8f02655bdaa7f4d5a5315cf75b3dd1
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import com.mendozabakery.bakeryappbackend.model.UserAccount;
-import com.mendozabakery.bakeryappbackend.repository.IUserAccountRepository;
-
 @Service
 @RequiredArgsConstructor
-<<<<<<< HEAD
-public class UserAccountService implements IUserAccountService {
-
-    private final IUserAccountRepository repo;
-=======
 public class UserAccountService implements IUserAccountService{
     private final IUserAccountRepositoryI repo;
->>>>>>> 548ce5e59d8f02655bdaa7f4d5a5315cf75b3dd1
 
     @Override
     public UserAccount save(UserAccount user) throws Exception {

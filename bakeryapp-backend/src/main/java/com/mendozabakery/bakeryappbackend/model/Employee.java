@@ -30,34 +30,17 @@ public class Employee {
     @Column(length = 15)
     private String phone;
 
-<<<<<<< HEAD
     @Column(length = 100)
     private String email;
 
     @Column(nullable = false, length = 50)
-=======
-    @Column(nullable = false, length = 50)
-    private String email;
-
-    @Column(nullable = false, length = 70)
->>>>>>> 548ce5e59d8f02655bdaa7f4d5a5315cf75b3dd1
     private String position;
 
     @Column(nullable = false)
     private boolean status;
-<<<<<<< HEAD
-=======
 
     @OneToOne(mappedBy = "employee")
     @JsonIgnore
     private UserAccount userAccount;
 
-    @OneToMany(mappedBy = "employee")
-    @JsonIgnore
-    private Set<Purchase> purchases;
-
-    @OneToMany(mappedBy = "employee")
-    @JsonIgnore
-    private Set<Sale> sales;
->>>>>>> 548ce5e59d8f02655bdaa7f4d5a5315cf75b3dd1
 }

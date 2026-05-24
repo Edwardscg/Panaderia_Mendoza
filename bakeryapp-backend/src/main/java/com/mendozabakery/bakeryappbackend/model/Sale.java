@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-<<<<<<< HEAD
-=======
 import java.util.Set;
->>>>>>> 548ce5e59d8f02655bdaa7f4d5a5315cf75b3dd1
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
