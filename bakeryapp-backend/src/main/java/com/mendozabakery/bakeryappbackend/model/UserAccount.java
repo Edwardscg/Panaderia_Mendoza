@@ -1,17 +1,13 @@
 package com.mendozabakery.bakeryappbackend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-
 public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +17,8 @@ public class UserAccount {
     @Column(nullable = false, length = 70)
     private String username;
 
-    @Column(nullable = false, length = 120)
+
+    @Column(nullable = false, length = 100)
     private String password;
 
     @Column(nullable = false, length = 50)
@@ -30,7 +27,9 @@ public class UserAccount {
     @Column(nullable = false)
     private boolean status;
 
-    @OneToOne
-    @JoinColumn(name = "id_employee", nullable = false)
+    @ManyToOne
+
+    @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_USERACCOUNT_EMPLOYEE"))
     private Employee employee;
 }
+

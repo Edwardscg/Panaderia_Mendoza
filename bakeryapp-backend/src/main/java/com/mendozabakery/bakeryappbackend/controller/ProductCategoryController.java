@@ -1,44 +1,75 @@
 package com.mendozabakery.bakeryappbackend.controller;
 
-import java.util.List;
-
+import com.mendozabakery.bakeryappbackend.dto.ProductCategoryDTO;
 import com.mendozabakery.bakeryappbackend.model.ProductCategory;
-import org.springframework.web.bind.annotation.*;
-
-import lombok.RequiredArgsConstructor;
-
 import com.mendozabakery.bakeryappbackend.service.IProductCategoryService;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/product-categories")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class ProductCategoryController {
 
     private final IProductCategoryService service;
+    private final ModelMapper modelMapper;
 
     @GetMapping
-    public List<ProductCategory> findAll() throws Exception {
-        return service.findAll();
+    public ResponseEntity<List<ProductCategoryDTO>> findAll() throws Exception {
+
+        List<ProductCategoryDTO> list = service.findAll()
+                .stream()
+                .map(e -> modelMapper.map(e, ProductCategoryDTO.class))
+                .toList();
+
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public ProductCategory findById(@PathVariable("id") Integer id) throws Exception {
-        return service.findById(id);
+    public ResponseEntity<ProductCategory> findById(@PathVariable Integer id) throws Exception {
+
+        ProductCategory obj = service.findById(id);
+
+        return ResponseEntity.ok(obj);
     }
 
     @PostMapping
-    public ProductCategory save(@RequestBody ProductCategory productCategory) throws Exception {
-        return service.save(productCategory);
+    public ResponseEntity<Void> save(@RequestBody ProductCategoryDTO dto) throws Exception {
+
+        ProductCategory obj = service.save(modelMapper.map(dto, ProductCategory.class));
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(obj.getIdCategory())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public ProductCategory update(@RequestBody ProductCategory productCategory, @PathVariable("id") Integer id) throws Exception {
-        return service.update(productCategory, id);
+    public ResponseEntity<ProductCategoryDTO> update(@RequestBody ProductCategoryDTO dto,
+                                                     @PathVariable Integer id) throws Exception {
+
+        ProductCategory obj = service.update(
+                modelMapper.map(dto, ProductCategory.class), id);
+
+        return ResponseEntity.ok(
+                modelMapper.map(obj, ProductCategoryDTO.class));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+
         service.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

@@ -11,3 +11,4 @@ public interface IEmployeeService extends  IGenericService<Employee, Integer>{
 //    Employee findById(Integer id) throws Exception;
 //    void delete(Integer id) throws Exception;
 }
+

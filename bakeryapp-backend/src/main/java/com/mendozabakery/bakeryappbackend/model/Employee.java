@@ -3,10 +3,7 @@ package com.mendozabakery.bakeryappbackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
@@ -15,29 +12,28 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEmployee;
 
-    @Column(nullable = false, length = 70)
+    @Column(nullable = false, length = 100)
     private String firstName;
 
-    @Column(nullable = false, length = 70)
+    @Column(nullable = false, length = 100)
     private String lastName;
 
-    @Column(nullable = false, length = 8)
+    @Column(nullable = false, length = 15)
     private String dni;
 
-    @Column(nullable = false, length = 9)
+    @Column(length = 15)
     private String phone;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 100)
     private String email;
 
-    @Column(nullable = false, length = 70)
+    @Column(nullable = false, length = 50)
     private String position;
 
     @Column(nullable = false)
@@ -47,11 +43,4 @@ public class Employee {
     @JsonIgnore
     private UserAccount userAccount;
 
-    @OneToMany(mappedBy = "employee")
-    @JsonIgnore
-    private Set<Purchase> purchases;
-
-    @OneToMany(mappedBy = "employee")
-    @JsonIgnore
-    private Set<Sale> sales;
 }
