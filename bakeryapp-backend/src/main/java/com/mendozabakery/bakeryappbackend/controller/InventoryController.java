@@ -62,11 +62,11 @@ public class InventoryController {
     }
 
     @GetMapping("/hateoas/{id}")
-    public EntityModel<InventoryDTO> findByIdHateoas(@PathVariable Integer id) throws Exception {
+    public EntityModel<Inventory> findByIdHateoas(@PathVariable Integer id) throws Exception {
         Inventory obj = service.findById(id);
-        InventoryDTO dto = modelMapper.map(obj, InventoryDTO.class);
 
-        EntityModel<InventoryDTO> entityModel = EntityModel.of(dto);
+
+        EntityModel<Inventory> entityModel = EntityModel.of(obj);
 
         WebMvcLinkBuilder link1 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(InventoryController.class).findById(id));
         WebMvcLinkBuilder link2 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(InventoryController.class).findAll());
