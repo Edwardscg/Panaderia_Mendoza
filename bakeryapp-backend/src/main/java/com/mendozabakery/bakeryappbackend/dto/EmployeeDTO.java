@@ -15,5 +15,5 @@ public class EmployeeDTO {
     private String phone;
     private String email;
     private String position;
-    private boolean status;
+    private Boolean status;
 }

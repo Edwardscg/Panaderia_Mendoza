@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import com.mendozabakery.bakeryappbackend.service.IEmployeeService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.swing.text.html.parser.Entity;
+
 @RestController
 @RequestMapping("/employees")
 @RequiredArgsConstructor
@@ -61,11 +63,9 @@ public class EmployeeController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/hateoas/{id}")
-    public EntityModel<EmployeeDTO> findByIdHateoas(@PathVariable Integer id) throws Exception {
+    public EntityModel<Employee> findByIdHateoas(@PathVariable Integer id) throws Exception {
         Employee obj = service.findById(id);
-        EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
-
-        EntityModel<EmployeeDTO> entityModel = EntityModel.of(dto);
+        EntityModel<Employee> entityModel = EntityModel.of(obj);
 
         WebMvcLinkBuilder link1 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(EmployeeController.class).findById(id));
         WebMvcLinkBuilder link2 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(EmployeeController.class).findAll());
