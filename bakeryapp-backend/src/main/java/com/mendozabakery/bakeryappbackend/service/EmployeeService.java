@@ -2,6 +2,7 @@ package com.mendozabakery.bakeryappbackend.service;
 
 import com.mendozabakery.bakeryappbackend.model.Employee;
 import com.mendozabakery.bakeryappbackend.repository.IEmployeeRepositoryI;
+import com.mendozabakery.bakeryappbackend.repository.IGenericRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EmployeeService implements IEmployeeService{
+public class EmployeeService extends GenericService<Employee, Integer> implements IEmployeeService{
     private final IEmployeeRepositoryI repo;
 
     @Override
