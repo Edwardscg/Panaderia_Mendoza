@@ -7,6 +7,9 @@ import com.mendozabakery.bakeryappbackend.dto.CustomerDTO;
 import com.mendozabakery.bakeryappbackend.model.Customer;
 import com.mendozabakery.bakeryappbackend.service.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcAffordanceBuilderDsl;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
@@ -55,5 +58,21 @@ public class CustomerController {
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/hateoas/{id}")
+    public EntityModel<Customer> findByHateoas(@PathVariable Integer id) throws Exception{
+        Customer obj = service.findById(id);
+        EntityModel<Customer> entityModel = EntityModel.of(obj);
+
+        WebMvcLinkBuilder link1 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CustomerController.class).findById(id));
+        WebMvcLinkBuilder link2 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CustomerController.class).findAll());
+        WebMvcLinkBuilder link3 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SupplierController.class).findAll());
+
+        entityModel.add(link1.withRel("customer-self-info"));
+        entityModel.add(link2.withRel("customer-all-info"));
+        entityModel.add(link3.withRel("supplier-all-info"));
+
+        return entityModel;
     }
 }
