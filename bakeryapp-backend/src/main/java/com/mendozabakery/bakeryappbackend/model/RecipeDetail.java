@@ -29,6 +29,6 @@ public class RecipeDetail {
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPEDETAIL_RECIPE"))
+    @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name = "FK_RECIPEDETAIL_PRODUCT"))
     private Product product;
 }

@@ -1,7 +1,7 @@
 package com.mendozabakery.bakeryappbackend.service;
 
 import com.mendozabakery.bakeryappbackend.model.Employee;
-import com.mendozabakery.bakeryappbackend.repository.IEmployeeRepository;
+import com.mendozabakery.bakeryappbackend.repository.IEmployeeRepositoryI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EmployeeService implements IEmployeeService{
-    private final IEmployeeRepository repo;
+    private final IEmployeeRepositoryI repo;
 
     @Override
     public Employee save(Employee employee) throws Exception{

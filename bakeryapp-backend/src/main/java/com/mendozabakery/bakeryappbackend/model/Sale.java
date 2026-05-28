@@ -1,5 +1,6 @@
 package com.mendozabakery.bakeryappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +23,7 @@ public class Sale {
     private Integer idSale;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date saleDate;
+    private LocalDateTime saleDate;
 
     @Column(nullable = false)
     private BigDecimal total;
@@ -36,9 +37,6 @@ public class Sale {
     @Column(nullable = false, length = 50)
     private String paymentMethod;
 
-    @Column(nullable = false)
-    private String status;
-
     @ManyToOne
     @JoinColumn(name = "id_customer", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_CUSTOMER"))
     private Customer customer;
@@ -46,4 +44,8 @@ public class Sale {
     @ManyToOne
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "FK_SALE_EMPLOYEE"))
     private Employee employee;
+
+    @OneToMany(mappedBy = "sale")
+    @JsonIgnore
+    private Set<SaleDetail> saleDetails;
 }

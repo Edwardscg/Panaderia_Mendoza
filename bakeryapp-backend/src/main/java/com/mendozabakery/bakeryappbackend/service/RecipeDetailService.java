@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mendozabakery.bakeryappbackend.model.RecipeDetail;
-import com.mendozabakery.bakeryappbackend.repository.IRecipeDetailRepository;
+import com.mendozabakery.bakeryappbackend.repository.IRecipeDetailRepositoryI;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RecipeDetailService implements IRecipeDetailService {
 
-    private final IRecipeDetailRepository repo;
+    private final IRecipeDetailRepositoryI repo;
 
     @Override
     public RecipeDetail save(RecipeDetail recipeDetail) throws Exception {

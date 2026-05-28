@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,11 +21,6 @@ public class Inventory {
     @Column(nullable = false)
     private int currentStock;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
-
-    //Relacion con Product 1 a 1
     @OneToOne
     @JoinColumn(name = "id_product", nullable = false)
     private Product product;

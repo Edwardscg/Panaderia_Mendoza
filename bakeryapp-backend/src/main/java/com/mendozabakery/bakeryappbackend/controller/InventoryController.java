@@ -12,6 +12,7 @@ import com.mendozabakery.bakeryappbackend.service.IInventoryService;
 @RestController
 @RequestMapping("/inventories")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class InventoryController {
 
     private final IInventoryService service;

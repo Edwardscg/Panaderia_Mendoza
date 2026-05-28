@@ -12,6 +12,7 @@ import com.mendozabakery.bakeryappbackend.service.IProductCategoryService;
 @RestController
 @RequestMapping("/product-categories")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ProductCategoryController {
 
     private final IProductCategoryService service;
