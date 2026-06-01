@@ -12,11 +12,14 @@ import lombok.NoArgsConstructor;
 public class CustomerDTO {
     private Integer idCustomer;
     @NotNull
-    @Size(min = 3, max = 50, message = "El nombre no puede ser menor a 3 carácteres")
-    private String nameCustomer;
-    private String dni;
-    private String phone;
-    private String email;
+    @Size(min = 3, max = 70, message = "El nombre no puede ser menor a 3 carácteres ni mayor a 70 carácteres")
+    private String nombreCliente;
+    @Size(min = 8, max = 20)
+    private String dniCliente;
+    @Size(min = 9, max = 15)
+    private String telefonoCliente;
+    @Size(min = 13, max = 100)
+    private String correoCliente;
     @NotNull
-    private Boolean status;
+    private Boolean estadoCliente;
 }

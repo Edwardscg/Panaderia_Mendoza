@@ -6,6 +6,7 @@ import com.mendozabakery.bakeryappbackend.model.ProductCategory;
 import com.mendozabakery.bakeryappbackend.service.IProductCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import java.util.List;
 public class ProductCategoryController {
 
     private final IProductCategoryService service;
+    @Qualifier("defaultMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping

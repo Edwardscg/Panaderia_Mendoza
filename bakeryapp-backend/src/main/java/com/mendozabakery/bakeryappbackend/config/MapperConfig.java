@@ -19,13 +19,20 @@ public class MapperConfig {
         ModelMapper mapper = new ModelMapper();
         // LECTURA - GET
         mapper.createTypeMap(Customer.class, CustomerDTO.class)
-                .addMapping(Customer::getNameCustomer, CustomerDTO::setNameCustomer)
-                .addMapping(Customer::getStatus, CustomerDTO::setStatus);
+                .addMapping(Customer::getNameCustomer, CustomerDTO::setNombreCliente)
+                .addMapping(Customer::getDni, CustomerDTO::setDniCliente)
+                .addMapping(Customer::getPhone, CustomerDTO::setTelefonoCliente)
+                .addMapping(Customer::getEmail, CustomerDTO::setCorreoCliente)
+                .addMapping(Customer::getStatus, CustomerDTO::setEstadoCliente);
 
         // ESCRITURA - POST, PUT
         mapper.createTypeMap(CustomerDTO.class, Customer.class)
-                .addMapping(CustomerDTO::getNameCustomer, Customer::setNameCustomer)
-                .addMapping(CustomerDTO::getStatus, Customer::setStatus);
+                .addMapping(CustomerDTO::getNombreCliente, Customer::setNameCustomer)
+                .addMapping(CustomerDTO::getDniCliente, Customer::setDni)
+                .addMapping(CustomerDTO::getTelefonoCliente, Customer::setPhone)
+                .addMapping(CustomerDTO::getCorreoCliente, Customer::setEmail)
+                .addMapping(CustomerDTO::getEstadoCliente, Customer::setStatus);
+
         return mapper;
     }
 }
