@@ -34,7 +34,7 @@ public class Customer {
     private String email;
 
     @Column(nullable = false)
-    private boolean status;
+    private Boolean status;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore

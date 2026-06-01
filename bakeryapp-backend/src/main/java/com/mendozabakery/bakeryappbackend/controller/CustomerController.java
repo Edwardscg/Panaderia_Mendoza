@@ -7,6 +7,7 @@ import com.mendozabakery.bakeryappbackend.dto.CustomerDTO;
 import com.mendozabakery.bakeryappbackend.model.Customer;
 import com.mendozabakery.bakeryappbackend.service.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcAffordanceBuilderDsl;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -24,13 +25,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class CustomerController {
 
     private final ICustomerService service;
+    @Qualifier("customerMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping
     public ResponseEntity<List<CustomerDTO>> findAll() throws Exception {
         //List<Customer> list = service.findAll();
         //List<CustomerDTO> list = service.findAll().stream().map(e -> new CustomerDTO(e.getIdCustomer(), e.getNameCustomer(), e.getDni(), e.getPhone(), e.getEmail(), e.));
-        //ModelMapper modelMapper = new ModelMapper();
+        //ModelMapper defaultMapper = new ModelMapper();
         List<CustomerDTO> list = service.findAll().stream().map(e -> modelMapper.map(e, CustomerDTO.class)).toList();
         return ResponseEntity.ok(list);
     }
