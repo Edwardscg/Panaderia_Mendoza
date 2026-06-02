@@ -37,7 +37,7 @@ public class Employee {
     private String position;
 
     @Column(nullable = false)
-    private boolean status;
+    private Boolean status;
 
     @OneToOne(mappedBy = "employee")
     @JsonIgnore

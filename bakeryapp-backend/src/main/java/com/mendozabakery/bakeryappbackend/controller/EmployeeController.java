@@ -22,10 +22,11 @@ import javax.swing.text.html.parser.Entity;
 @RestController
 @RequestMapping("/employees")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class EmployeeController {
+
     private final IEmployeeService service;
-    @Qualifier("defaultMapper")
+    @Qualifier("employeeMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -37,10 +38,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDTO> findById(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<Employee> findById(@PathVariable Integer id) throws Exception {
         Employee obj = service.findById(id);
-        EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
-        return ResponseEntity.ok(dto);
+        //EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
+        return ResponseEntity.ok(obj);
     }
 
     @PostMapping
@@ -64,6 +65,7 @@ public class EmployeeController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/hateoas/{id}")
     public EntityModel<Employee> findByIdHateoas(@PathVariable Integer id) throws Exception {
         Employee obj = service.findById(id);
