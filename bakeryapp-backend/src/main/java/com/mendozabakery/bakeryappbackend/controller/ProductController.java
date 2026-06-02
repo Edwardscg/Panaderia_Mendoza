@@ -5,6 +5,7 @@ import com.mendozabakery.bakeryappbackend.model.Product;
 import com.mendozabakery.bakeryappbackend.service.IProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ProductController {
 
     private final IProductService service;
+    @Qualifier("defaultMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping

@@ -7,6 +7,7 @@ import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
 import com.mendozabakery.bakeryappbackend.model.Employee;
 import com.mendozabakery.bakeryappbackend.service.EmployeeService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import javax.swing.text.html.parser.Entity;
 @CrossOrigin(origins = "*")
 public class EmployeeController {
     private final IEmployeeService service;
+    @Qualifier("defaultMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping
