@@ -4,6 +4,8 @@ import com.mendozabakery.bakeryappbackend.dto.ProductCategoryDTO;
 import com.mendozabakery.bakeryappbackend.model.Customer;
 import com.mendozabakery.bakeryappbackend.model.ProductCategory;
 import com.mendozabakery.bakeryappbackend.service.IProductCategoryService;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,7 +48,7 @@ public class ProductCategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody ProductCategoryDTO dto) throws Exception {
+    public ResponseEntity<Void> save(@Valid @RequestBody ProductCategoryDTO dto) throws Exception {
 
         ProductCategory obj = service.save(modelMapper.map(dto, ProductCategory.class));
 
@@ -60,8 +62,9 @@ public class ProductCategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductCategoryDTO> update(@RequestBody ProductCategoryDTO dto,
-                                                     @PathVariable Integer id) throws Exception {
+    public ResponseEntity<ProductCategoryDTO> update(
+            @Valid @RequestBody ProductCategoryDTO dto,
+            @PathVariable Integer id) throws Exception {
 
         ProductCategory obj = service.update(
                 modelMapper.map(dto, ProductCategory.class), id);
