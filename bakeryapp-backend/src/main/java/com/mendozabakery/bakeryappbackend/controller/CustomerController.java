@@ -6,6 +6,7 @@
     import com.mendozabakery.bakeryappbackend.dto.CustomerDTO;
     import com.mendozabakery.bakeryappbackend.model.Customer;
     import com.mendozabakery.bakeryappbackend.service.CustomerService;
+    import jakarta.validation.Valid;
     import org.modelmapper.ModelMapper;
     import org.springframework.beans.factory.annotation.Qualifier;
     import org.springframework.hateoas.EntityModel;
@@ -44,7 +45,7 @@
         }
 
         @PostMapping
-        public ResponseEntity <Void> save(@RequestBody CustomerDTO dto) throws Exception {
+        public ResponseEntity <Void> save(@Valid @RequestBody CustomerDTO dto) throws Exception {
             Customer obj = service.save(modelMapper.map(dto, Customer.class));
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdCustomer()).toUri();
             return ResponseEntity.created(location).build();
