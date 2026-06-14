@@ -9,18 +9,24 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductCategoryDTO {
+public class RecipeDTO {
 
-    private Integer idCategory;
+    private Integer idRecipe;
 
     @NotNull
-    @Size(max = 50, message = "El nombre no puede superar los 50 caracteres")
+    @Size(min = 3, max = 100, message = "El nombre debe tener entre 3 y 100 caracteres")
     private String name;
 
     @NotNull
-    @Size(max = 150, message = "La descripción no puede superar los 150 caracteres")
+    @Size(min = 10, max = 255, message = "La descripción debe tener entre 10 y 255 caracteres")
     private String description;
 
     @NotNull
+    private Integer yield;
+
+    @NotNull
     private Boolean status;
+
+    @NotNull
+    private Integer idProduct;
 }
