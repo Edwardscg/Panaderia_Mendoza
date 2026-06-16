@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 //Clase S1
 @Component
 public class JwtTokenUtil {
-    //Métodos para generar y validar tokens JWT
-    private final long JWT_TOKEN_VALIDITY = 5 * 60 * 60 * 1000; // 5 horas en milisegundos
 
     @Value("${jwt.secret}")
     private String secret;
+    @Value("${jwt.expiration}")
+    private long jwtExpiration;
 
     public String generateToken(UserDetails userDetails) {
         //Payload
@@ -34,7 +34,7 @@ public class JwtTokenUtil {
                 .claims(claims)
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
+                .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
                 .compact();
     }
