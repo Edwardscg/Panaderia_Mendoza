@@ -1,0 +1,43 @@
+package com.mendozabakery.bakeryappbackend.service.implementation;
+
+import java.util.List;
+
+import com.mendozabakery.bakeryappbackend.service.ISaleService;
+import org.springframework.stereotype.Service;
+
+import com.mendozabakery.bakeryappbackend.model.Sale;
+import com.mendozabakery.bakeryappbackend.repository.ISaleRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class SaleService implements ISaleService {
+    private final ISaleRepository repo;
+
+    @Override
+    public Sale save(Sale sale) throws Exception {
+        return repo.save(sale);
+    }
+
+    @Override
+    public Sale update(Sale sale, Integer id) throws Exception {
+        sale.setIdSale(id);
+        return repo.save(sale);
+    }
+
+    @Override
+    public List<Sale> findAll() throws Exception {
+        return repo.findAll();
+    }
+
+    @Override
+    public Sale findById(Integer id) throws Exception {
+        return repo.findById(id).orElse(new Sale());
+    }
+
+    @Override
+    public void delete(Integer id) throws Exception {
+        repo.deleteById(id);
+    }
+}

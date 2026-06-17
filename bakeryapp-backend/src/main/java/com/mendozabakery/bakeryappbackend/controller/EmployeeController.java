@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
 import com.mendozabakery.bakeryappbackend.model.Employee;
-import com.mendozabakery.bakeryappbackend.service.EmployeeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.EntityModel;
@@ -16,8 +15,6 @@ import lombok.RequiredArgsConstructor;
 
 import com.mendozabakery.bakeryappbackend.service.IEmployeeService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.swing.text.html.parser.Entity;
 
 @RestController
 @RequestMapping("/employees")
