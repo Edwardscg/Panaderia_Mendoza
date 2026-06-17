@@ -1,41 +1,68 @@
 package com.mendozabakery.bakeryappbackend.controller;
+
+import com.mendozabakery.bakeryappbackend.dto.SaleDTO;
+import com.mendozabakery.bakeryappbackend.model.Sale;
+import com.mendozabakery.bakeryappbackend.service.ISaleService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
 
-import com.mendozabakery.bakeryappbackend.model.Sale;
-import org.springframework.web.bind.annotation.*;
-
-import lombok.RequiredArgsConstructor;
-
-import com.mendozabakery.bakeryappbackend.service.ISaleService;
 @RestController
 @RequestMapping("/sales")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class SaleController {
+
     private final ISaleService service;
 
+    @Qualifier("defaultMapper")
+    private final ModelMapper modelMapper;
+
     @GetMapping
-    public List<Sale> findAll() throws Exception {
-        return service.findAll();
+    public ResponseEntity<List<SaleDTO>> findAll() throws Exception {
+
+        List<SaleDTO> list = service.findAll().stream().map(e -> modelMapper.map(e, SaleDTO.class)).toList();
+
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public Sale findById(@PathVariable("id") Integer id) throws Exception {
-        return service.findById(id);
+    public ResponseEntity<Sale> findById(@PathVariable Integer id) throws Exception {
+
+        Sale obj = service.findById(id);
+
+        return ResponseEntity.ok(obj);
     }
 
     @PostMapping
-    public Sale save(@RequestBody Sale sale) throws Exception {
-        return service.save(sale);
+    public ResponseEntity<Void> save(@Valid @RequestBody SaleDTO dto) throws Exception {
+
+        Sale obj = service.save(modelMapper.map(dto, Sale.class));
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdSale()).toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public Sale update(@RequestBody Sale sale, @PathVariable("id") Integer id) throws Exception {
-        return service.update(sale, id);
+    public ResponseEntity<SaleDTO> update(@RequestBody SaleDTO dto, @PathVariable Integer id) throws Exception {
+
+        Sale obj = service.update(modelMapper.map(dto, Sale.class), id);
+
+        return ResponseEntity.ok(modelMapper.map(obj, SaleDTO.class));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+
         service.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

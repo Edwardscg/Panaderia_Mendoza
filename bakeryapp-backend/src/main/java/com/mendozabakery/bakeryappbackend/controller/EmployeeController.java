@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
 import com.mendozabakery.bakeryappbackend.model.Employee;
-import com.mendozabakery.bakeryappbackend.service.EmployeeService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequiredArgsConstructor
 //@CrossOrigin(origins = "*")
 public class EmployeeController {
+
     private final IEmployeeService service;
+    @Qualifier("employeeMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -33,10 +35,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDTO> findById(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<Employee> findById(@PathVariable Integer id) throws Exception {
         Employee obj = service.findById(id);
-        EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
-        return ResponseEntity.ok(dto);
+        //EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
+        return ResponseEntity.ok(obj);
     }
 
     @PostMapping
@@ -60,12 +62,11 @@ public class EmployeeController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping("/hateoas/{id}")
-    public EntityModel<EmployeeDTO> findByIdHateoas(@PathVariable Integer id) throws Exception {
-        Employee obj = service.findById(id);
-        EmployeeDTO dto = modelMapper.map(obj, EmployeeDTO.class);
 
-        EntityModel<EmployeeDTO> entityModel = EntityModel.of(dto);
+    @GetMapping("/hateoas/{id}")
+    public EntityModel<Employee> findByIdHateoas(@PathVariable Integer id) throws Exception {
+        Employee obj = service.findById(id);
+        EntityModel<Employee> entityModel = EntityModel.of(obj);
 
         WebMvcLinkBuilder link1 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(EmployeeController.class).findById(id));
         WebMvcLinkBuilder link2 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(EmployeeController.class).findAll());
