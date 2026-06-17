@@ -1,11 +1,8 @@
 package com.mendozabakery.bakeryappbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -37,10 +34,10 @@ public class Employee {
     private String position;
 
     @Column(nullable = false)
-    private boolean status;
+    private Boolean status;
 
     @OneToOne(mappedBy = "employee")
     @JsonIgnore
-    private UserAccount userAccount;
+    private User userAccount;
 
 }

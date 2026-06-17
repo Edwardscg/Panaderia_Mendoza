@@ -1,44 +1,68 @@
 package com.mendozabakery.bakeryappbackend.controller;
 
-import java.util.List;
-
+import com.mendozabakery.bakeryappbackend.dto.SupplierDTO;
 import com.mendozabakery.bakeryappbackend.model.Supplier;
-import org.springframework.web.bind.annotation.*;
-
-import lombok.RequiredArgsConstructor;
-
 import com.mendozabakery.bakeryappbackend.service.ISupplierService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/suppliers")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class SupplierController {
 
     private final ISupplierService service;
 
+    @Qualifier("defaultMapper")
+    private final ModelMapper modelMapper;
+
     @GetMapping
-    public List<Supplier> findAll() throws Exception {
-        return service.findAll();
+    public ResponseEntity<List<SupplierDTO>> findAll() throws Exception {
+
+        List<SupplierDTO> list = service.findAll().stream().map(e -> modelMapper.map(e, SupplierDTO.class)).toList();
+
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public Supplier findById(@PathVariable("id") Integer id) throws Exception {
-        return service.findById(id);
+    public ResponseEntity<Supplier> findById(@PathVariable Integer id) throws Exception {
+
+        Supplier obj = service.findById(id);
+
+        return ResponseEntity.ok(obj);
     }
 
     @PostMapping
-    public Supplier save(@RequestBody Supplier supplier) throws Exception {
-        return service.save(supplier);
+    public ResponseEntity<Void> save(@Valid @RequestBody SupplierDTO dto) throws Exception {
+
+        Supplier obj = service.save(modelMapper.map(dto, Supplier.class));
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdSupplier()).toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public Supplier update(@RequestBody Supplier supplier, @PathVariable("id") Integer id) throws Exception {
-        return service.update(supplier, id);
+    public ResponseEntity<SupplierDTO> update(@RequestBody SupplierDTO dto, @PathVariable Integer id) throws Exception {
+
+        Supplier obj = service.update(modelMapper.map(dto, Supplier.class), id);
+
+        return ResponseEntity.ok(modelMapper.map(obj, SupplierDTO.class));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+
         service.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
