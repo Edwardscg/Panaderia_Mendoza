@@ -2,8 +2,10 @@ package com.mendozabakery.bakeryappbackend.config;
 
 import com.mendozabakery.bakeryappbackend.dto.CustomerDTO;
 import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
+import com.mendozabakery.bakeryappbackend.dto.SupplierDTO;
 import com.mendozabakery.bakeryappbackend.model.Customer;
 import com.mendozabakery.bakeryappbackend.model.Employee;
+import com.mendozabakery.bakeryappbackend.model.Supplier;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,6 +61,32 @@ public class MapperConfig {
                 .addMapping(EmployeeDTO::getEmail, Employee::setEmail)
                 .addMapping(EmployeeDTO::getPosition, Employee::setPosition)
                 .addMapping(EmployeeDTO::getStatus, Employee::setStatus);
+
+        return mapper;
+    }
+    @Bean
+    public ModelMapper supplierMapper(){
+
+        ModelMapper mapper = new ModelMapper();
+
+        // LECTURA - GET
+        mapper.createTypeMap(Supplier.class, SupplierDTO.class)
+                .addMapping(Supplier::getBusinessName, SupplierDTO::setBusinessName)
+                .addMapping(Supplier::getRuc, SupplierDTO::setRuc)
+                .addMapping(Supplier::getPhone, SupplierDTO::setPhone)
+                .addMapping(Supplier::getEmail, SupplierDTO::setEmail)
+                .addMapping(Supplier::getAddress, SupplierDTO::setAddress)
+                .addMapping(Supplier::isStatus, SupplierDTO::setStatus);
+
+
+        // ESCRITURA - POST, PUT
+        mapper.createTypeMap(SupplierDTO.class, Supplier.class)
+                .addMapping(SupplierDTO::getBusinessName, Supplier::setBusinessName)
+                .addMapping(SupplierDTO::getRuc, Supplier::setRuc)
+                .addMapping(SupplierDTO::getPhone, Supplier::setPhone)
+                .addMapping(SupplierDTO::getEmail, Supplier::setEmail)
+                .addMapping(SupplierDTO::getAddress, Supplier::setAddress)
+                .addMapping(SupplierDTO::getStatus, Supplier::setStatus);
 
         return mapper;
     }

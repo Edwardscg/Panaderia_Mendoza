@@ -22,7 +22,7 @@ public class SupplierController {
 
     private final ISupplierService service;
 
-    @Qualifier("defaultMapper")
+    @Qualifier("suppliertMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping
