@@ -41,7 +41,7 @@ public class Product {
     private String unitMeasure;
 
     @Column(nullable = false)
-    private boolean status;
+    private Boolean status;
 
     @ManyToOne
     @JoinColumn(name = "id_category", nullable = false, foreignKey = @ForeignKey(name = "FK_PRODUCT_CATEGORY"))

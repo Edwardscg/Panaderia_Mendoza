@@ -3,6 +3,7 @@ package com.mendozabakery.bakeryappbackend.controller;
 import com.mendozabakery.bakeryappbackend.dto.ProductDTO;
 import com.mendozabakery.bakeryappbackend.model.Product;
 import com.mendozabakery.bakeryappbackend.service.IProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,11 +17,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "*")
 public class ProductController {
 
     private final IProductService service;
-    @Qualifier("defaultMapper")
+
+    @Qualifier("productMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -38,12 +39,11 @@ public class ProductController {
     public ResponseEntity<Product> findById(@PathVariable Integer id) throws Exception {
 
         Product obj = service.findById(id);
-
         return ResponseEntity.ok(obj);
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody ProductDTO dto) throws Exception {
+    public ResponseEntity<Void> save(@Valid @RequestBody ProductDTO dto) throws Exception {
 
         Product obj = service.save(modelMapper.map(dto, Product.class));
 
@@ -57,8 +57,9 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO dto,
-                                             @PathVariable Integer id) throws Exception {
+    public ResponseEntity<ProductDTO> update(
+            @Valid @RequestBody ProductDTO dto,
+            @PathVariable Integer id) throws Exception {
 
         Product obj = service.update(modelMapper.map(dto, Product.class), id);
 
@@ -69,7 +70,6 @@ public class ProductController {
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
 
         service.delete(id);
-
         return ResponseEntity.noContent().build();
     }
 }

@@ -1,12 +1,15 @@
 package com.mendozabakery.bakeryappbackend.config;
 
-import com.mendozabakery.bakeryappbackend.dto.CustomerDTO;
-import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
-import com.mendozabakery.bakeryappbackend.model.Customer;
-import com.mendozabakery.bakeryappbackend.model.Employee;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.mendozabakery.bakeryappbackend.dto.CustomerDTO;
+import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
+import com.mendozabakery.bakeryappbackend.dto.ProductDTO;
+import com.mendozabakery.bakeryappbackend.model.Customer;
+import com.mendozabakery.bakeryappbackend.model.Employee;
+import com.mendozabakery.bakeryappbackend.model.Product;
 
 @Configuration
 public class MapperConfig {
@@ -59,6 +62,36 @@ public class MapperConfig {
                 .addMapping(EmployeeDTO::getEmail, Employee::setEmail)
                 .addMapping(EmployeeDTO::getPosition, Employee::setPosition)
                 .addMapping(EmployeeDTO::getStatus, Employee::setStatus);
+
+        return mapper;
+    }
+    @Bean
+    public ModelMapper productMapper() {
+        ModelMapper mapper = new ModelMapper();
+
+        // Entity -> DTO
+        mapper.createTypeMap(Product.class, ProductDTO.class)
+                .addMapping(Product::getName, ProductDTO::setName)
+                .addMapping(Product::getDescription, ProductDTO::setDescription)
+                .addMapping(Product::getSalePrice, ProductDTO::setSalePrice)
+                .addMapping(Product::getProductionCost, ProductDTO::setProductionCost)
+                .addMapping(Product::getType, ProductDTO::setType)
+                .addMapping(Product::getUnitMeasure, ProductDTO::setUnitMeasure)
+                .addMapping(Product::getStatus, ProductDTO::setStatus)
+                .addMappings(m -> m.map(
+                        src -> src.getCategory().getIdCategory(),
+                        ProductDTO::setIdCategory
+                ));
+
+        // DTO -> Entity
+        mapper.createTypeMap(ProductDTO.class, Product.class)
+                .addMapping(ProductDTO::getName, Product::setName)
+                .addMapping(ProductDTO::getDescription, Product::setDescription)
+                .addMapping(ProductDTO::getSalePrice, Product::setSalePrice)
+                .addMapping(ProductDTO::getProductionCost, Product::setProductionCost)
+                .addMapping(ProductDTO::getType, Product::setType)
+                .addMapping(ProductDTO::getUnitMeasure, Product::setUnitMeasure)
+                .addMapping(ProductDTO::getStatus, Product::setStatus);
 
         return mapper;
     }
