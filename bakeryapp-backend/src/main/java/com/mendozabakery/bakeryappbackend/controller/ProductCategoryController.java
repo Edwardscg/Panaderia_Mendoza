@@ -25,7 +25,7 @@ import java.util.List;
 public class ProductCategoryController {
 
     private final IProductCategoryService service;
-    @Qualifier("defaultMapper")
+    @Qualifier("productCategoryMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping

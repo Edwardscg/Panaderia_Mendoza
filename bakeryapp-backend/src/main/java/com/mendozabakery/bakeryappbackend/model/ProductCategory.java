@@ -28,7 +28,7 @@ public class ProductCategory {
     private String description;
 
     @Column(nullable = false)
-    private boolean status;
+    private Boolean status;
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore

@@ -7,10 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import com.mendozabakery.bakeryappbackend.dto.CustomerDTO;
 import com.mendozabakery.bakeryappbackend.dto.EmployeeDTO;
 import com.mendozabakery.bakeryappbackend.dto.ProductDTO;
+import com.mendozabakery.bakeryappbackend.dto.ProductCategoryDTO;
 import com.mendozabakery.bakeryappbackend.model.Customer;
 import com.mendozabakery.bakeryappbackend.model.Employee;
 import com.mendozabakery.bakeryappbackend.model.Product;
-
+import com.mendozabakery.bakeryappbackend.model.ProductCategory;
 @Configuration
 public class MapperConfig {
 
@@ -95,5 +96,22 @@ public class MapperConfig {
 
         return mapper;
     }
+    @Bean
+        public ModelMapper productCategoryMapper() {
+        ModelMapper mapper = new ModelMapper();
 
+        // Entity -> DTO
+        mapper.createTypeMap(ProductCategory.class, ProductCategoryDTO.class)
+                .addMapping(ProductCategory::getName, ProductCategoryDTO::setName)
+                .addMapping(ProductCategory::getDescription, ProductCategoryDTO::setDescription)
+                .addMapping(ProductCategory::getStatus, ProductCategoryDTO::setStatus);
+
+        // DTO -> Entity
+        mapper.createTypeMap(ProductCategoryDTO.class, ProductCategory.class)
+                .addMapping(ProductCategoryDTO::getName, ProductCategory::setName)
+                .addMapping(ProductCategoryDTO::getDescription, ProductCategory::setDescription)
+                .addMapping(ProductCategoryDTO::getStatus, ProductCategory::setStatus);
+
+        return mapper;
+    }
 }
